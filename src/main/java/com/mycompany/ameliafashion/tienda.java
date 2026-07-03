@@ -8,7 +8,7 @@ public class tienda extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(tienda.class.getName());
     public tienda() {
         initComponents();
-          ImageIcon imagen = new ImageIcon("C:\\Users\\carlos\\Documents\\NetBeansProjects\\AmeliaFashion\\Imagenes\\logo.jpeg");
+          ImageIcon imagen = new ImageIcon();
 
     java.awt.Image img = imagen.getImage();
 
