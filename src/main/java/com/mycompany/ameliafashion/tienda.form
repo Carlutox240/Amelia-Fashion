@@ -25,8 +25,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-              <Component id="logo" min="-2" pref="37" max="-2" attributes="0"/>
-              <EmptySpace pref="826" max="32767" attributes="0"/>
+              <Component id="logo" min="-2" pref="77" max="-2" attributes="0"/>
+              <EmptySpace pref="786" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -34,8 +34,8 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-              <Component id="logo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="503" max="32767" attributes="0"/>
+              <Component id="logo" min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace pref="473" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,7 +43,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="logo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="logo"/>
+        <Property name="text" type="java.lang.String" value=","/>
       </Properties>
     </Component>
   </SubComponents>
