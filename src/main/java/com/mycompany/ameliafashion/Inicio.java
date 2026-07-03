@@ -30,9 +30,9 @@ public class Inicio extends javax.swing.JFrame {
 
         jScrollBar1 = new javax.swing.JScrollBar();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Iniciar = new javax.swing.JButton();
+        Registro = new javax.swing.JButton();
+        Admin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,17 +41,17 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Amelia's Fashion");
 
-        jButton1.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
-        jButton1.setText("Iniciar sesion");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        Iniciar.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
+        Iniciar.setText("Iniciar sesion");
+        Iniciar.addActionListener(this::IniciarActionPerformed);
 
-        jButton2.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
-        jButton2.setText("Registrate");
-        jButton2.addActionListener(this::jButton2ActionPerformed);
+        Registro.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
+        Registro.setText("Registrate");
+        Registro.addActionListener(this::RegistroActionPerformed);
 
-        jButton3.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
-        jButton3.setText("Administrador");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        Admin.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
+        Admin.setText("Administrador");
+        Admin.addActionListener(this::AdminActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -61,9 +61,9 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(334, 334, 334)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(Iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Registro, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Admin))
                 .addContainerGap(336, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -72,28 +72,28 @@ public class Inicio extends javax.swing.JFrame {
                 .addGap(176, 176, 176)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(Iniciar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(Admin)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(Registro)
                 .addContainerGap(137, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_IniciarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_RegistroActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_AdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,9 +121,9 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton Admin;
+    private javax.swing.JButton Iniciar;
+    private javax.swing.JButton Registro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollBar jScrollBar1;
     // End of variables declaration//GEN-END:variables

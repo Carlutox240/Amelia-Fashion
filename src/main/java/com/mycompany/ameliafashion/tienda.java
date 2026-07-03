@@ -39,6 +39,11 @@ public class tienda extends javax.swing.JFrame {
         jLabel1.setText("Usuario");
 
         Salir.setText("Cerrar Sesión");
+        Salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SalirMouseClicked(evt);
+            }
+        });
         Salir.addActionListener(this::SalirActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -60,7 +65,7 @@ public class tienda extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(Salir))
                     .addComponent(Jlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(492, Short.MAX_VALUE))
@@ -72,6 +77,12 @@ public class tienda extends javax.swing.JFrame {
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseClicked
+      Inicio I=new Inicio();
+        I.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_SalirMouseClicked
 
     /**
      * @param args the command line arguments
