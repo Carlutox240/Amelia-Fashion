@@ -76,6 +76,7 @@
         <Property name="text" type="java.lang.String" value="Iniciar sesion"/>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="IniciarMouseClicked"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="IniciarActionPerformed"/>
       </Events>
     </Component>
