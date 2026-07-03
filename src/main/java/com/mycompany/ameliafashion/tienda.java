@@ -7,14 +7,15 @@ public class tienda extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(tienda.class.getName());
     public tienda() {
         initComponents();
-          ImageIcon imagen = new ImageIcon("C:\\Users\\carlos\\Downloads\\papeleria.png");
+          ImageIcon imagen = new ImageIcon("C:\\Users\\carlos\\Documents\\NetBeansProjects\\AmeliaFashion\\Imagenes\\logo.jpeg");
 
     java.awt.Image img = imagen.getImage();
 
     java.awt.Image imgEscalada = img.getScaledInstance(
-            logo.getWidth(),
-            logo.getHeight(),
+            Jlabel.getWidth(),
+            Jlabel.getHeight(),
             java.awt.Image.SCALE_SMOOTH);
+    Jlabel.setIcon(new ImageIcon(imgEscalada));
     }
 
     /**
@@ -26,11 +27,19 @@ public class tienda extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        logo = new javax.swing.JLabel();
+        Jlabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        Salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        logo.setText(",");
+        Jlabel.setMaximumSize(new java.awt.Dimension(367, 86));
+        Jlabel.setMinimumSize(new java.awt.Dimension(367, 86));
+
+        jLabel1.setText("Usuario");
+
+        Salir.setText("Cerrar Sesión");
+        Salir.addActionListener(this::SalirActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -38,19 +47,31 @@ public class tienda extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(786, Short.MAX_VALUE))
+                .addComponent(Jlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 558, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Salir)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(logo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(473, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(Salir))
+                    .addComponent(Jlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(492, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,6 +99,8 @@ public class tienda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel logo;
+    private javax.swing.JLabel Jlabel;
+    private javax.swing.JButton Salir;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
