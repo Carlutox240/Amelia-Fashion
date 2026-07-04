@@ -8,9 +8,11 @@ public class tienda extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(tienda.class.getName());
     public tienda() {
         initComponents();
-          ImageIcon imagen = new ImageIcon();
+         ImageIcon imagen = new ImageIcon(
+    getClass().getResource("/imagenes/logo.jpeg")
+);
 
-    java.awt.Image img = imagen.getImage();
+java.awt.Image img = imagen.getImage();
 
     java.awt.Image imgEscalada = img.getScaledInstance(
             Jlabel.getWidth(),
