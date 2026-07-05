@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package com.mycompany.ameliafashion;
 
 /**
@@ -113,10 +110,8 @@ public class Registrarte extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
        String correo = txtCorreo.getText();
 
-String contraseña = String.valueOf(txtPassword.getPassword());
-
-String confirmar = String.valueOf(txtConfirmar.getPassword());
-
+String contraseña = txtPassword.getText();
+String confirmar = txtConfirmar.getText();
 if(correo.isEmpty() || contraseña.isEmpty() || confirmar.isEmpty()){
     javax.swing.JOptionPane.showMessageDialog(this,
             "Complete todos los campos");
