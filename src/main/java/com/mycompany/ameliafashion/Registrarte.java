@@ -33,7 +33,7 @@ public class Registrarte extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
-        txtContraseña = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
         txtConfirmar = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
 
@@ -71,7 +71,7 @@ public class Registrarte extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(287, 287, 287)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
@@ -97,7 +97,7 @@ public class Registrarte extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -111,7 +111,30 @@ public class Registrarte extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
+       String correo = txtCorreo.getText();
+
+String contraseña = String.valueOf(txtPassword.getPassword());
+
+String confirmar = String.valueOf(txtConfirmar.getPassword());
+
+if(correo.isEmpty() || contraseña.isEmpty() || confirmar.isEmpty()){
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Complete todos los campos");
+    return;
+}
+
+if(!contraseña.equals(confirmar)){
+    javax.swing.JOptionPane.showMessageDialog(this,
+            "Las contraseñas no coinciden");
+    return;
+}
+
+javax.swing.JOptionPane.showMessageDialog(this,
+        "Registro realizado correctamente");
+
+txtCorreo.setText("");
+txtPassword.setText("");
+txtConfirmar.setText("");
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
@@ -146,7 +169,7 @@ public class Registrarte extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtConfirmar;
-    private javax.swing.JTextField txtContraseña;
     private javax.swing.JTextField txtCorreo;
+    private javax.swing.JTextField txtPassword;
     // End of variables declaration//GEN-END:variables
 }

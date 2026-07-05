@@ -35,7 +35,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="287" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtContraseña" min="-2" pref="264" max="-2" attributes="0"/>
+                                  <Component id="txtPassword" min="-2" pref="264" max="-2" attributes="0"/>
                                   <Component id="txtCorreo" min="-2" pref="264" max="-2" attributes="0"/>
                                   <Component id="txtConfirmar" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
                               </Group>
@@ -71,7 +71,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtContraseña" min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="txtPassword" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -121,7 +121,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtCorreo">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtContrase&#xf1;a">
+    <Component class="javax.swing.JTextField" name="txtPassword">
     </Component>
     <Component class="javax.swing.JTextField" name="txtConfirmar">
     </Component>
