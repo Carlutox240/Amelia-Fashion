@@ -66,7 +66,7 @@ public class Admin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(51, 255, 255));
         jPanel1.setToolTipText("");
         jPanel1.setAlignmentX(800.0F);
         jPanel1.setAlignmentY(70.0F);
