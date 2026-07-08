@@ -145,6 +145,9 @@ public class Registrarte extends javax.swing.JFrame {
         txtUsuario.setText("");
         txtCorreo.setText("");
         txtPassword.setText("");
+        InicioSesion IS=new InicioSesion();
+        IS.setVisible(true);
+       this.setVisible(false);
         
     } catch (ClassNotFoundException ex) {
         Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);

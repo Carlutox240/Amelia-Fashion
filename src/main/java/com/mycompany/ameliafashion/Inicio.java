@@ -35,7 +35,11 @@ public class Inicio extends javax.swing.JFrame {
 
         Registro.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
         Registro.setText("Registrate");
-        Registro.addActionListener(this::RegistroActionPerformed);
+        Registro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RegistroMouseClicked(evt);
+            }
+        });
 
         Admin.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
         Admin.setText("Administrador");
@@ -80,10 +84,6 @@ public class Inicio extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_IniciarActionPerformed
 
-    private void RegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RegistroActionPerformed
-
     private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_AdminActionPerformed
@@ -99,6 +99,13 @@ public class Inicio extends javax.swing.JFrame {
         ISAD.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_AdminMouseClicked
+
+    private void RegistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegistroMouseClicked
+        // TODO add your handling code here:
+        Registrarte REG=new Registrarte();
+        REG.setVisible(true);
+       this.setVisible(false); 
+    }//GEN-LAST:event_RegistroMouseClicked
 
     /**
      * @param args the command line arguments
