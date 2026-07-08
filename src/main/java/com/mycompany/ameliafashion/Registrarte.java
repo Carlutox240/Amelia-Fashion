@@ -45,7 +45,6 @@ public class Registrarte extends javax.swing.JFrame {
                 btnRegistrarMouseClicked(evt);
             }
         });
-        btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
 
         jLabel5.setFont(new java.awt.Font("Pristina", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 153, 0));
@@ -77,7 +76,6 @@ public class Registrarte extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnRegistrar)
                         .addGap(62, 62, 62)))
                 .addContainerGap(326, Short.MAX_VALUE))
@@ -107,57 +105,56 @@ public class Registrarte extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-      String usuario = txtUsuario.getText();
-
-String correo = txtCorreo.getText();
-
-String contraseña = txtPassword.getText();
-if (usuario.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
-    javax.swing.JOptionPane.showMessageDialog(this,
-            "Complete todos los campos.");
-    return;
-}
-    javax.swing.JOptionPane.showMessageDialog(this,
-        "Usuario registrado correctamente.");
-
-// Limpiar los campos
-txtUsuario.setText("");
-txtCorreo.setText("");
-txtPassword.setText("");
-    }//GEN-LAST:event_btnRegistrarActionPerformed
-
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-        // TODO add your handling code here:
-        try {
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    Connection conexion = DriverManager.getConnection(
-        "jdbc:mysql://localhost:3306/amelia_fashion", "root", "");
+        
+    String usuario = txtUsuario.getText();
+    String correo = txtCorreo.getText();
+    String contraseña = txtPassword.getText();
+
     
-    Statement comando = conexion.createStatement();
-    
-    
-    String sql = "INSERT INTO registro(usuario, correo, contrasena) VALUES ('" +
-                 txtUsuario.getText() + "','" +
-                 txtCorreo.getText() + "','" +
-                 txtPassword.getText() + "')";
-    
-    comando.executeUpdate(sql);
-    conexion.close();
-    
-    txtUsuario.setText("");
-    txtCorreo.setText("");
-    txtPassword.setText("");
-    
-} catch (ClassNotFoundException ex) {
-    Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
-} catch (SQLException ex) {
-    Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
-}
+    if (usuario.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Complete todos los campos.");
+        return;
+    }
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conexion = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/amelia_fashion", "root", "");
+        Statement comando = conexion.createStatement();
+        
+        
+        comando.executeUpdate("INSERT INTO registro(usuario,correo,contrasena) VALUES ('" +
+                usuario +
+                "','" + correo +
+                "','" + contraseña +
+                "')");
+        
+        conexion.close();
+        
+        
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Usuario registrado correctamente.");
+        
+       
+        txtUsuario.setText("");
+        txtCorreo.setText("");
+        txtPassword.setText("");
+        
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Error: Driver no encontrado - " + ex.getMessage());
+    } catch (SQLException ex) {
+        Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Error de base de datos: " + ex.getMessage());
+    }
     }//GEN-LAST:event_btnRegistrarMouseClicked
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
