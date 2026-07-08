@@ -39,6 +39,11 @@ public class Inicio extends javax.swing.JFrame {
 
         Admin.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
         Admin.setText("Administrador");
+        Admin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AdminMouseClicked(evt);
+            }
+        });
         Admin.addActionListener(this::AdminActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -88,6 +93,12 @@ public class Inicio extends javax.swing.JFrame {
         IS.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_IniciarMouseClicked
+
+    private void AdminMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AdminMouseClicked
+    InicioSesionAdmin ISAD=new InicioSesionAdmin();
+        ISAD.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_AdminMouseClicked
 
     /**
      * @param args the command line arguments
