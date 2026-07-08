@@ -162,46 +162,6 @@ public class PAgregar extends javax.swing.JFrame {
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
 
-        String usuario = txtUsuario.getText();
-        String correo = txtCorreo.getText();
-        String contraseña = txtPassword.getText();
-
-        if (usuario.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this,
-                "Complete todos los campos.");
-            return;
-        }
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection conexion = DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/amelia_fashion", "root", "");
-            Statement comando = conexion.createStatement();
-
-            comando.executeUpdate("INSERT INTO registro(usuario,correo,contrasena) VALUES ('" +
-                usuario +
-                "','" + correo +
-                "','" + contraseña +
-                "')");
-
-            conexion.close();
-
-            javax.swing.JOptionPane.showMessageDialog(this,
-                "Usuario registrado correctamente.");
-
-            txtUsuario.setText("");
-            txtCorreo.setText("");
-            txtPassword.setText("");
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
-            javax.swing.JOptionPane.showMessageDialog(this,
-                "Error: Driver no encontrado - " + ex.getMessage());
-        } catch (SQLException ex) {
-            Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
-            javax.swing.JOptionPane.showMessageDialog(this,
-                "Error de base de datos: " + ex.getMessage());
-        }
     }//GEN-LAST:event_btnRegistrarMouseClicked
 
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
