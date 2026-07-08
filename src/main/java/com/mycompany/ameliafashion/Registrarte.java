@@ -1,5 +1,12 @@
-
 package com.mycompany.ameliafashion;
+import java.sql.Connection; //Conexion a la bd
+import java.sql.DriverManager; //Puente con el Driver
+import java.sql.SQLException;  //Errores de la Base Datos
+import java.sql.Statement; //Comandos altas, bajas y cambios
+import java.sql.ResultSet;  //Consultas
+import java.util.logging.Level;  //Errores de try y catch
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 public class Registrarte extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Registrarte.class.getName());
@@ -41,6 +48,11 @@ public class Registrarte extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         btnRegistrar.setText("Registrarse");
+        btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnRegistrarMouseClicked(evt);
+            }
+        });
         btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,6 +135,35 @@ txtPassword.setText("");
     private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
+        // TODO add your handling code here:
+        try {
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    Connection conexion = DriverManager.getConnection(
+        "jdbc:mysql://localhost:3306/amelia_fashion", "root", "");
+    
+    Statement comando = conexion.createStatement();
+    
+    
+    String sql = "INSERT INTO registro(usuario, correo, contrasena) VALUES ('" +
+                 txtUsuario.getText() + "','" +
+                 txtCorreo.getText() + "','" +
+                 txtPassword.getText() + "')";
+    
+    comando.executeUpdate(sql);
+    conexion.close();
+    
+    txtUsuario.setText("");
+    txtCorreo.setText("");
+    txtPassword.setText("");
+    
+} catch (ClassNotFoundException ex) {
+    Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
+} catch (SQLException ex) {
+    Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
+}
+    }//GEN-LAST:event_btnRegistrarMouseClicked
 
     /**
      * @param args the command line arguments
