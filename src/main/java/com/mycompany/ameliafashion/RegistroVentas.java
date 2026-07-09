@@ -35,10 +35,8 @@ public class RegistroVentas extends javax.swing.JFrame {
         TApellido = new javax.swing.JTextField();
         LTexto = new javax.swing.JLabel();
         Lclave = new javax.swing.JLabel();
-        BAgregar1 = new javax.swing.JButton();
         BEliminar = new javax.swing.JButton();
         Bvolver3 = new javax.swing.JButton();
-        BModificar = new javax.swing.JButton();
         BConsultar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -65,17 +63,6 @@ public class RegistroVentas extends javax.swing.JFrame {
         Lclave.setForeground(new java.awt.Color(51, 153, 0));
         Lclave.setText("producto");
 
-        BAgregar1.setBackground(new java.awt.Color(102, 255, 102));
-        BAgregar1.setFont(new java.awt.Font("SimSun-ExtG", 1, 14)); // NOI18N
-        BAgregar1.setForeground(new java.awt.Color(51, 153, 0));
-        BAgregar1.setText("Agregar");
-        BAgregar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BAgregar1MouseClicked(evt);
-            }
-        });
-        BAgregar1.addActionListener(this::BAgregar1ActionPerformed);
-
         BEliminar.setBackground(new java.awt.Color(102, 255, 102));
         BEliminar.setFont(new java.awt.Font("SimSun-ExtG", 1, 14)); // NOI18N
         BEliminar.setForeground(new java.awt.Color(51, 153, 0));
@@ -94,16 +81,6 @@ public class RegistroVentas extends javax.swing.JFrame {
         Bvolver3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Bvolver3MouseClicked(evt);
-            }
-        });
-
-        BModificar.setBackground(new java.awt.Color(102, 255, 102));
-        BModificar.setFont(new java.awt.Font("SimSun-ExtG", 1, 14)); // NOI18N
-        BModificar.setForeground(new java.awt.Color(51, 153, 0));
-        BModificar.setText("Modificar");
-        BModificar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BModificarMouseClicked(evt);
             }
         });
 
@@ -144,77 +121,78 @@ public class RegistroVentas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(115, 115, 115)
+                        .addComponent(LNombre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TClave, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(115, 115, 115)
+                                    .addComponent(Lclave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(163, 163, 163))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(99, 99, 99)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(BEliminar)
+                                            .addGap(64, 64, 64)
+                                            .addComponent(BConsultar))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(LApellido)
+                                                .addComponent(LApellido1))
+                                            .addGap(163, 163, 163)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
+                                .addGap(31, 31, 31)
                                 .addComponent(Bvolver3))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(99, 99, 99)
-                                .addComponent(LTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(BAgregar1)
-                                .addGap(18, 18, 18)
-                                .addComponent(BEliminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(BModificar)
-                                .addGap(18, 18, 18)
-                                .addComponent(BConsultar))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LApellido1)
-                                .addGap(56, 56, 56)
-                                .addComponent(TApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(LNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Lclave, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(LApellido, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addGap(56, 56, 56)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(TClave, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(TApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(18, 18, 18)
+                                .addGap(144, 144, 144)
+                                .addComponent(LTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(88, 88, 88)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Lclave)
-                    .addComponent(TClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LNombre)
-                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LApellido)
-                    .addComponent(TApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(LApellido1)
-                    .addComponent(TApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BAgregar1)
-                    .addComponent(BEliminar)
-                    .addComponent(BModificar)
-                    .addComponent(BConsultar))
-                .addGap(18, 18, 18)
-                .addComponent(LTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(118, 118, 118)
-                .addComponent(Bvolver3)
-                .addGap(15, 15, 15))
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(Lclave)
+                            .addComponent(TClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LNombre)
+                            .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LApellido)
+                            .addComponent(TApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(LApellido1)
+                            .addComponent(TApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(90, 90, 90)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(BEliminar)
+                            .addComponent(BConsultar))
+                        .addGap(46, 46, 46)
+                        .addComponent(LTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(Bvolver3)
+                        .addGap(15, 15, 15))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
 
         pack();
@@ -232,14 +210,6 @@ public class RegistroVentas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TApellidoActionPerformed
 
-    private void BAgregar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BAgregar1MouseClicked
-
-    }//GEN-LAST:event_BAgregar1MouseClicked
-
-    private void BAgregar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAgregar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BAgregar1ActionPerformed
-
     private void BEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BEliminarMouseClicked
  
     }//GEN-LAST:event_BEliminarMouseClicked
@@ -254,10 +224,6 @@ public class RegistroVentas extends javax.swing.JFrame {
 
         this.dispose();
     }//GEN-LAST:event_Bvolver3MouseClicked
-
-    private void BModificarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BModificarMouseClicked
-  
-    }//GEN-LAST:event_BModificarMouseClicked
 
     private void BConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BConsultarMouseClicked
    
@@ -298,10 +264,8 @@ public class RegistroVentas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BAgregar;
-    private javax.swing.JButton BAgregar1;
     private javax.swing.JButton BConsultar;
     private javax.swing.JButton BEliminar;
-    private javax.swing.JButton BModificar;
     private javax.swing.JButton Bvolver;
     private javax.swing.JButton Bvolver1;
     private javax.swing.JButton Bvolver2;
