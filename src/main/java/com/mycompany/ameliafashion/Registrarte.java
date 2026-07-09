@@ -1,4 +1,5 @@
 package com.mycompany.ameliafashion;
+import java.awt.Color;
 import java.sql.Connection; //Conexion a la bd
 import java.sql.DriverManager; //Puente con el Driver
 import java.sql.SQLException;  //Errores de la Base Datos
@@ -13,6 +14,7 @@ public class Registrarte extends javax.swing.JFrame {
 
     public Registrarte() {
         initComponents();
+          getContentPane().setBackground(new Color(235, 227, 218));
     }
 
  

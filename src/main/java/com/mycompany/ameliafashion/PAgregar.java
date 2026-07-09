@@ -1,5 +1,6 @@
 
 package com.mycompany.ameliafashion;
+import java.awt.Color;
 import java.sql.Connection; //Conexion a la bd
 import java.sql.DriverManager; //Puente con el Driver
 import java.sql.SQLException;  //Errores de la Base Datos
@@ -21,6 +22,7 @@ public class PAgregar extends javax.swing.JFrame {
      */
     public PAgregar() {
         initComponents();
+          getContentPane().setBackground(new Color(235, 227, 218));
     }
 
     /**

@@ -49,7 +49,7 @@ public class tienda extends javax.swing.JFrame {
     private void configurarVentana() {
         ImageIcon logo = new ImageIcon(getClass().getResource("/imagenes/logo.jpeg"));
         Jlabel.setIcon(new ImageIcon(logo.getImage().getScaledInstance(139, 42, java.awt.Image.SCALE_SMOOTH)));
-        getContentPane().setBackground(new Color(247, 244, 242));
+        getContentPane().setBackground(new Color(235, 227, 218));
 
         jTable1.setDefaultEditor(Object.class, null);
         ((DefaultTableModel) jTable1.getModel()).setRowCount(0); 
@@ -58,9 +58,6 @@ public class tienda extends javax.swing.JFrame {
         
         jPanelProductos.setLayout(new java.awt.GridLayout(0, 2, 15, 15));
         jScrollPane2.setViewportView(jPanelProductos);
-
-        jeliminar.addActionListener(e -> eliminarDelCarrito());
-        btnpagar.addActionListener(e -> pagarCarrito());
         mostrarUsuario();
     }
 
@@ -139,48 +136,6 @@ public class tienda extends javax.swing.JFrame {
         modelo.addRow(new Object[]{nombre, 1, precio, precio});
         actualizarTotal();
     }
-    private void eliminarDelCarrito() {
-        int fila = jTable1.getSelectedRow();
-        if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Selecciona un producto para eliminarlo.");
-            return;
-        }
-        ((DefaultTableModel) jTable1.getModel()).removeRow(fila);
-        actualizarTotal();
-    }
-
-    private void pagarCarrito() {
-        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
-        if (modelo.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(this, "El carrito está vacío.");
-            return;
-        }
-
-        int confirmar = JOptionPane.showConfirmDialog(this,
-                "Total a pagar: " + txtTotal.getText() + "\n¿Confirmar pago?",
-                "Confirmar pago", JOptionPane.YES_NO_OPTION);
-        if (confirmar != JOptionPane.YES_OPTION) return;
-
-        String sql = "UPDATE productos SET cantidad = cantidad - ? WHERE nombre = ? AND cantidad >= ?";
-        try (Connection con = conectarBD()) {
-            for (int i = 0; i < modelo.getRowCount(); i++) {
-                int cantidad = Integer.parseInt(modelo.getValueAt(i, 1).toString());
-                try (PreparedStatement st = con.prepareStatement(sql)) {
-                    st.setInt(1, cantidad);
-                    st.setString(2, modelo.getValueAt(i, 0).toString());
-                    st.setInt(3, cantidad);
-                    st.executeUpdate();
-                }
-            }
-            JOptionPane.showMessageDialog(this, "¡Pago realizado con éxito!");
-            modelo.setRowCount(0);
-            actualizarTotal();
-            cargarProductos(); // refresca el stock que se ve en las tarjetas
-        } catch (Exception ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, "Error al procesar el pago.");
-        }
-    }
     private void actualizarTotal() {
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         double total = 0;
@@ -256,8 +211,18 @@ public class tienda extends javax.swing.JFrame {
         jLabel3.setText("Total:");
 
         jeliminar.setText("eliminar");
+        jeliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jeliminarMouseClicked(evt);
+            }
+        });
 
         btnpagar.setText("pagar");
+        btnpagar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnpagarMouseClicked(evt);
+            }
+        });
 
         jPanelProductos.setLayout(new java.awt.GridLayout(1, 0));
 
@@ -371,6 +336,49 @@ public class tienda extends javax.swing.JFrame {
     private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
     
     }//GEN-LAST:event_jTable1PropertyChange
+
+    private void jeliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jeliminarMouseClicked
+     int fila = jTable1.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Selecciona un producto para eliminarlo.");
+            return;
+        }
+        ((DefaultTableModel) jTable1.getModel()).removeRow(fila);
+        actualizarTotal();
+    }//GEN-LAST:event_jeliminarMouseClicked
+
+    private void btnpagarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnpagarMouseClicked
+       DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        if (modelo.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "El carrito está vacío.");
+            return;
+        }
+
+        int confirmar = JOptionPane.showConfirmDialog(this,
+                "Total a pagar: " + txtTotal.getText() + "\n¿Confirmar pago?",
+                "Confirmar pago", JOptionPane.YES_NO_OPTION);
+        if (confirmar != JOptionPane.YES_OPTION) return;
+
+        String sql = "UPDATE productos SET cantidad = cantidad - ? WHERE nombre = ? AND cantidad >= ?";
+        try (Connection con = conectarBD()) {
+            for (int i = 0; i < modelo.getRowCount(); i++) {
+                int cantidad = Integer.parseInt(modelo.getValueAt(i, 1).toString());
+                try (PreparedStatement st = con.prepareStatement(sql)) {
+                    st.setInt(1, cantidad);
+                    st.setString(2, modelo.getValueAt(i, 0).toString());
+                    st.setInt(3, cantidad);
+                    st.executeUpdate();
+                }
+            }
+            JOptionPane.showMessageDialog(this, "¡Pago realizado con éxito!");
+            modelo.setRowCount(0);
+            actualizarTotal();
+            cargarProductos(); // refresca el stock que se ve en las tarjetas
+        } catch (Exception ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error al procesar el pago.");
+        }
+    }//GEN-LAST:event_btnpagarMouseClicked
 
     /**
      * @param args the command line arguments

@@ -4,6 +4,8 @@
  */
 package com.mycompany.ameliafashion;
 
+import java.awt.Color;
+
 /**
  *
  * @author criss
@@ -17,6 +19,7 @@ public class PActializar extends javax.swing.JFrame {
      */
     public PActializar() {
         initComponents();
+          getContentPane().setBackground(new Color(235, 227, 218));
     }
 
     /**

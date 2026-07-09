@@ -16,6 +16,7 @@ public class InicioSesionAdmin extends javax.swing.JFrame {
      */
     public InicioSesionAdmin() {
         initComponents();
+          getContentPane().setBackground(new Color(235, 227, 218));
     }
 
     /**

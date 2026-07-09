@@ -1,11 +1,14 @@
 
 package com.mycompany.ameliafashion;
 
+import java.awt.Color;
+
 public class Inicio extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Inicio.class.getName());
     public Inicio() {
         initComponents();
+          getContentPane().setBackground(new Color(235, 227, 218));
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
