@@ -1,14 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.ameliafashion;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author criss
  */
 public class RegistroVentas extends javax.swing.JFrame {
+    private static final String BD_URL = "jdbc:mysql://localhost:3306/amelia_fashion";
+    private static final String BD_USUARIO = "root";
+    private static final String BD_PASSWORD = "";
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegistroVentas.class.getName());
 
@@ -17,7 +25,82 @@ public class RegistroVentas extends javax.swing.JFrame {
      */
     public RegistroVentas() {
         initComponents();
+        consultarVentas();
     }
+     private Connection conectarBD() throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return DriverManager.getConnection(BD_URL, BD_USUARIO, BD_PASSWORD);
+    }
+   private void consultarVentas() {
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+        
+        String sql = "SELECT id_venta, id_usuario, id_producto, cantidad, precio FROM compras";
+        
+        try (Connection con = conectarBD();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+            
+            while (rs.next()) {
+                Object[] fila = {
+                    rs.getInt("id_venta"),
+                    rs.getInt("id_usuario"),
+                    rs.getInt("id_producto"),
+                    rs.getDouble("cantidad"),
+                    rs.getDouble("precio")
+                };
+                modelo.addRow(fila);
+            }
+            
+            LTexto.setText("Ventas cargadas: " + modelo.getRowCount());
+            
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, 
+                    "Error al cargar ventas: " + ex.getMessage());
+        }
+       }
+         private void eliminarVenta() {
+        int filaSeleccionada = jTable1.getSelectedRow();
+        
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, 
+                    "Selecciona una venta para eliminar.");
+            return;
+        }
+        
+        int idVenta = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+        int idUsuario = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 1).toString());
+        
+        int confirmar = JOptionPane.showConfirmDialog(this,
+                "¿Seguro que deseas eliminar la venta con ID: " + idVenta + "?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION);
+        
+        if (confirmar == JOptionPane.YES_OPTION) {
+            try (Connection con = conectarBD();
+                 Statement st = con.createStatement()) {
+                
+                String sql = "DELETE FROM compras WHERE id_venta = " + idVenta;
+                int filasAfectadas = st.executeUpdate(sql);
+                
+                if (filasAfectadas > 0) {
+                    JOptionPane.showMessageDialog(this, 
+                            "Venta eliminada correctamente.");
+                    consultarVentas(); // Recargar la tabla
+                } else {
+                    JOptionPane.showMessageDialog(this, 
+                            "No se pudo eliminar la venta.");
+                }
+                
+            } catch (Exception ex) {
+                logger.log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(this, 
+                        "Error al eliminar venta: " + ex.getMessage());
+            }
+        }
+        
+    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,7 +155,6 @@ public class RegistroVentas extends javax.swing.JFrame {
                 BEliminarMouseClicked(evt);
             }
         });
-        BEliminar.addActionListener(this::BEliminarActionPerformed);
 
         Bvolver3.setBackground(new java.awt.Color(153, 255, 153));
         Bvolver3.setFont(new java.awt.Font("SimSun-ExtG", 1, 14)); // NOI18N
@@ -96,17 +178,19 @@ public class RegistroVentas extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "id", "usuario", "producto", "cant.", "precio", "fecha", "Total"
+                "id_venta", "id_usuario", "id_producto", "cantidad", "precio"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -121,8 +205,6 @@ public class RegistroVentas extends javax.swing.JFrame {
             jTable1.getColumnModel().getColumn(2).setResizable(false);
             jTable1.getColumnModel().getColumn(3).setResizable(false);
             jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-            jTable1.getColumnModel().getColumn(6).setResizable(false);
         }
 
         LApellido1.setFont(new java.awt.Font("SimSun-ExtG", 1, 18)); // NOI18N
@@ -148,27 +230,32 @@ public class RegistroVentas extends javax.swing.JFrame {
                                 .addComponent(BEliminar)
                                 .addGap(64, 64, 64)
                                 .addComponent(BConsultar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(58, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LApellido, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LApellido1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(LNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Lclave, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(64, 64, 64)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TClave, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(51, 51, 51))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(LApellido, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(LApellido1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(LNombre, javax.swing.GroupLayout.Alignment.TRAILING))
+                                        .addGap(64, 64, 64))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addComponent(Lclave, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(56, 56, 56)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TClave, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(101, 101, 101)
                         .addComponent(LTexto, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 563, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,44 +294,40 @@ public class RegistroVentas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TClaveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TClaveActionPerformed
-
-    private void TNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TNombreActionPerformed
-
-    private void TApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TApellidoActionPerformed
-
     private void BEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BEliminarMouseClicked
- 
+  eliminarVenta();
     }//GEN-LAST:event_BEliminarMouseClicked
 
-    private void BEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BEliminarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BEliminarActionPerformed
-
     private void Bvolver3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Bvolver3MouseClicked
-        Inicio ventana = new Inicio();
-        ventana.setVisible(true);
-
+        Admin admin = new Admin(); 
+        admin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Bvolver3MouseClicked
 
+    
     private void BConsultarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BConsultarMouseClicked
-   
+           consultarVentas();
     }//GEN-LAST:event_BConsultarMouseClicked
 
     private void jTable1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTable1PropertyChange
 
     }//GEN-LAST:event_jTable1PropertyChange
 
+    private void TClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TClaveActionPerformed
+
+    private void TApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TApellidoActionPerformed
+
     private void TApellido1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TApellido1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TApellido1ActionPerformed
+
+    private void TNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TNombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -272,12 +355,8 @@ public class RegistroVentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BAgregar;
     private javax.swing.JButton BConsultar;
     private javax.swing.JButton BEliminar;
-    private javax.swing.JButton Bvolver;
-    private javax.swing.JButton Bvolver1;
-    private javax.swing.JButton Bvolver2;
     private javax.swing.JButton Bvolver3;
     private javax.swing.JLabel LApellido;
     private javax.swing.JLabel LApellido1;
