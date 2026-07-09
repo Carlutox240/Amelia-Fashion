@@ -1,5 +1,12 @@
 package com.mycompany.ameliafashion;
-
+import java.awt.Color;
+import java.sql.Connection; //Conexion a la bd
+import java.sql.DriverManager; //Puente con el Driver
+import java.sql.SQLException;  //Errores de la Base Datos
+import java.sql.Statement; //Comandos altas, bajas y cambios
+import java.sql.ResultSet;  //Consultas
+import java.util.logging.Level;  //Errores de try y catch
+import java.util.logging.Logger;  //Atrapar errorres
 public class InicioSesionAdmin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InicioSesionAdmin.class.getName());
@@ -26,7 +33,7 @@ public class InicioSesionAdmin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAcceder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,13 +59,13 @@ public class InicioSesionAdmin extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(153, 0, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Verificar Credenciales");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAcceder.setBackground(new java.awt.Color(153, 0, 0));
+        btnAcceder.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAcceder.setForeground(new java.awt.Color(255, 255, 255));
+        btnAcceder.setText("Verificar Credenciales");
+        btnAcceder.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnAccederMouseClicked(evt);
             }
         });
 
@@ -81,7 +88,7 @@ public class InicioSesionAdmin extends javax.swing.JFrame {
                 .addGap(233, 233, 233))
             .addGroup(layout.createSequentialGroup()
                 .addGap(268, 268, 268)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(286, 286, 286)
@@ -102,7 +109,7 @@ public class InicioSesionAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAcceder, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(154, Short.MAX_VALUE))
@@ -119,12 +126,62 @@ public class InicioSesionAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    private void btnAccederMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAccederMouseClicked
         // TODO add your handling code here:
-         Admin AD=new Admin();
-        AD.setVisible(true);
-       this.setVisible(false);
-    }//GEN-LAST:event_jButton2MouseClicked
+        
+    String usuario = jTextField1.getText().trim();
+    String contrasena = new String(jPasswordField1.getPassword()).trim();
+    
+    if (usuario.isEmpty() || contrasena.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+                "Complete todos los campos.");
+        return;
+    }
+    
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conexion = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/amelia_fashion", "root", "");
+        Statement comando = conexion.createStatement();
+        
+        // Consulta para verificar admin
+        String sql = "SELECT * FROM admin WHERE correo_admin = '" + usuario + 
+                    "' AND codigo_seguridad = '" + contrasena + "'";
+        
+        ResultSet rs = comando.executeQuery(sql);
+        
+        if (rs.next()) {
+            
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Bienvenido Administrador: " + usuario);
+            
+            
+            Admin AD = new Admin();
+            AD.setVisible(true);
+            this.dispose(); 
+            
+        } else {
+            
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Usuario o contraseña incorrectos");
+            
+            
+            jTextField1.setText("");
+            jPasswordField1.setText("");
+        }
+        
+        conexion.close();
+        
+    } catch (ClassNotFoundException ex) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+                "Error: Driver MySQL no encontrado");
+        Logger.getLogger(InicioSesionAdmin.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+                "Error de conexión: " + ex.getMessage());
+        Logger.getLogger(InicioSesionAdmin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnAccederMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
@@ -159,8 +216,8 @@ public class InicioSesionAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAcceder;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

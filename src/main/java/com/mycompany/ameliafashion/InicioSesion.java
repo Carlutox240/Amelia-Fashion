@@ -30,11 +30,11 @@ public class InicioSesion extends javax.swing.JFrame {
     private void initComponents() {
 
         txtUsuario = new javax.swing.JTextField();
-        txtcontraseña = new javax.swing.JPasswordField();
+        txtContraseña = new javax.swing.JPasswordField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -42,7 +42,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
         txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
 
-        txtcontraseña.addActionListener(this::txtcontraseñaActionPerformed);
+        txtContraseña.addActionListener(this::txtContraseñaActionPerformed);
 
         jLabel2.setText("Nombre de Usuario");
 
@@ -57,16 +57,15 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(0, 153, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Ingresar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnIngresar.setBackground(new java.awt.Color(0, 153, 0));
+        btnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btnIngresarMouseClicked(evt);
             }
         });
-        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jLabel4.setFont(new java.awt.Font("Pristina", 1, 36)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 153, 0));
@@ -84,14 +83,14 @@ public class InicioSesion extends javax.swing.JFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(349, 349, 349)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(300, 300, 300)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel2)
                             .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(318, 318, 318))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
@@ -109,9 +108,9 @@ public class InicioSesion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addGap(1, 1, 1)
-                .addComponent(txtcontraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(154, Short.MAX_VALUE))
@@ -129,25 +128,70 @@ public class InicioSesion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
-    private void txtcontraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcontraseñaActionPerformed
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtcontraseñaActionPerformed
+    }//GEN-LAST:event_txtContraseñaActionPerformed
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-        tienda t=new tienda();
-        t.setVisible(true);
-       this.setVisible(false);
-    }//GEN-LAST:event_jButton2MouseClicked
+    private void btnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseClicked
+        // TODO add your handling code here:
+    String usuario = txtUsuario.getText().trim();
+    String contrasena = new String(txtContraseña.getPassword()).trim();
+    
+    if (usuario.isEmpty() || contrasena.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+                "Complete todos los campos.");
+        return;
+    }
+    
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conexion = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/amelia_fashion", "root", "");
+        Statement comando = conexion.createStatement();
+        
+        // Consulta para verificar usuario
+        String sql = "SELECT * FROM registro WHERE usuario = '" + usuario + 
+                    "' AND contrasena = '" + contrasena + "'";
+        
+        ResultSet rs = comando.executeQuery(sql);
+        
+        if (rs.next()) {
+            
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Bienvenido: " + usuario);
+            
+            tienda t=new tienda(usuario);
+            t.setVisible(true);
+            this.setVisible(false); 
+            
+        } else {
+            
+            javax.swing.JOptionPane.showMessageDialog(this, 
+                    "Usuario o contraseña incorrectos");
+            
+            
+            txtUsuario.setText("");
+            txtContraseña.setText("");
+        }
+        
+        conexion.close();
+        
+    } catch (ClassNotFoundException ex) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+                "Error: Driver MySQL no encontrado");
+        Logger.getLogger(InicioSesionAdmin.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        javax.swing.JOptionPane.showMessageDialog(this, 
+                "Error de conexión: " + ex.getMessage());
+        Logger.getLogger(InicioSesionAdmin.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_btnIngresarMouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         Inicio INICIO=new Inicio();
         INICIO.setVisible(true);
        this.setVisible(false);    
     }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,12 +219,12 @@ public class InicioSesion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnIngresar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;
-    private javax.swing.JPasswordField txtcontraseña;
     // End of variables declaration//GEN-END:variables
 }
