@@ -59,7 +59,7 @@ public class Registrarte extends javax.swing.JFrame {
         jLabel7.setText("Contraseña");
 
         jButton1.setBackground(new java.awt.Color(153, 153, 153));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         jButton1.setText("Regresar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

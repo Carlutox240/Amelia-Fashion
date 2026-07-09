@@ -143,7 +143,7 @@
           <Color blue="99" green="99" red="99" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Segoe UI" size="12" style="1"/>
+          <Font name="Times New Roman" size="24" style="3"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Regresar"/>
       </Properties>
