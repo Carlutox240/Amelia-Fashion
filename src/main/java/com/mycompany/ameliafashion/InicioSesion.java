@@ -134,7 +134,6 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void btnIngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnIngresarMouseClicked
         // TODO add your handling code here:
-        
     String usuario = txtUsuario.getText().trim();
     String contrasena = new String(txtContraseña.getPassword()).trim();
     
@@ -161,8 +160,7 @@ public class InicioSesion extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, 
                     "Bienvenido: " + usuario);
             
-            
-            tienda t=new tienda();
+            tienda t=new tienda(usuario);
             t.setVisible(true);
             this.setVisible(false); 
             

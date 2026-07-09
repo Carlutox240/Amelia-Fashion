@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel; // Maneja los datos de la tabla del 
 public class tienda extends javax.swing.JFrame {
 
     // Datos de conexión en un solo lugar 
+    private String nombreUsuario;
     private static final String BD_URL = "jdbc:mysql://localhost:3306/amelia_fashion";
     private static final String BD_USUARIO = "root";
     private static final String BD_PASSWORD = "";
@@ -24,12 +25,27 @@ public class tienda extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(tienda.class.getName());
 
     public tienda() {
+        this(null);
+    }
+    public tienda(String usuario) {
+        this.nombreUsuario = usuario;
         initComponents();
         configurarVentana();
         cargarProductos();
     }
 
  
+    private void mostrarUsuario() {
+        System.out.println("Usuario recibido: " + nombreUsuario); // Debug
+        if (nombreUsuario != null && !nombreUsuario.isEmpty()) {
+            labelUsuario.setText("" + nombreUsuario);
+        } else {
+            labelUsuario.setText("Usuario");
+        }
+        // Forzar actualización visual
+        labelUsuario.repaint();
+        labelUsuario.revalidate();
+    }
     private void configurarVentana() {
         ImageIcon logo = new ImageIcon(getClass().getResource("/imagenes/logo.jpeg"));
         Jlabel.setIcon(new ImageIcon(logo.getImage().getScaledInstance(139, 42, java.awt.Image.SCALE_SMOOTH)));
@@ -45,6 +61,7 @@ public class tienda extends javax.swing.JFrame {
 
         jeliminar.addActionListener(e -> eliminarDelCarrito());
         btnpagar.addActionListener(e -> pagarCarrito());
+        mostrarUsuario();
     }
 
     /** Abre una conexión nueva a MySQL. Se usa en cargarProductos() y pagarCarrito(). */
@@ -182,7 +199,7 @@ public class tienda extends javax.swing.JFrame {
     private void initComponents() {
 
         Jlabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        labelUsuario = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
@@ -196,13 +213,14 @@ public class tienda extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         jPanelProductos = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         Jlabel.setMaximumSize(new java.awt.Dimension(367, 86));
         Jlabel.setMinimumSize(new java.awt.Dimension(367, 86));
 
-        jLabel1.setText("Usuario");
+        labelUsuario.setText(".");
 
         Salir.setText("Cerrar Sesión");
         Salir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -262,6 +280,8 @@ public class tienda extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jPanel1);
 
+        jLabel1.setText("Usuario:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -273,7 +293,9 @@ public class tienda extends javax.swing.JFrame {
                         .addGap(37, 37, 37)
                         .addComponent(Jlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Salir))
                     .addGroup(layout.createSequentialGroup()
@@ -309,8 +331,9 @@ public class tienda extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Salir))
+                        .addComponent(labelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Salir)
+                        .addComponent(jLabel1))
                     .addComponent(Jlabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -389,6 +412,7 @@ public class tienda extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton jeliminar;
+    private javax.swing.JLabel labelUsuario;
     private javax.swing.JLabel txtTotal;
     // End of variables declaration//GEN-END:variables
 }
