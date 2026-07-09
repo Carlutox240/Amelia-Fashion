@@ -34,19 +34,19 @@ public class PAgregar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtUsuario = new javax.swing.JTextField();
+        txtProducto = new javax.swing.JTextField();
         btnRegistrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
+        txtPrecio = new javax.swing.JTextField();
+        txtCantidad = new javax.swing.JTextField();
         btnRegistrar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
+        txtProducto.addActionListener(this::txtProductoActionPerformed);
 
         btnRegistrar.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         btnRegistrar.setText("Exit");
@@ -55,7 +55,6 @@ public class PAgregar extends javax.swing.JFrame {
                 btnRegistrarMouseClicked(evt);
             }
         });
-        btnRegistrar.addActionListener(this::btnRegistrarActionPerformed);
 
         jLabel5.setFont(new java.awt.Font("Pristina", 1, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 153, 0));
@@ -71,7 +70,7 @@ public class PAgregar extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Sans Serif Collection", 3, 18)); // NOI18N
         jLabel3.setText("Nombre Producto");
 
-        txtCorreo.addActionListener(this::txtCorreoActionPerformed);
+        txtPrecio.addActionListener(this::txtPrecioActionPerformed);
 
         btnRegistrar1.setBackground(new java.awt.Color(102, 255, 102));
         btnRegistrar1.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
@@ -82,7 +81,6 @@ public class PAgregar extends javax.swing.JFrame {
                 btnRegistrar1MouseClicked(evt);
             }
         });
-        btnRegistrar1.addActionListener(this::btnRegistrar1ActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -91,9 +89,9 @@ public class PAgregar extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -115,15 +113,15 @@ public class PAgregar extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
@@ -134,29 +132,70 @@ public class PAgregar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+    private void txtProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtProductoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtUsuarioActionPerformed
+    }//GEN-LAST:event_txtProductoActionPerformed
 
     private void btnRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrarMouseClicked
-
+            Admin AD = new Admin();
+            AD.setVisible(true);
+            this.dispose(); 
     }//GEN-LAST:event_btnRegistrarMouseClicked
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    }//GEN-LAST:event_txtPrecioActionPerformed
 
     private void btnRegistrar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegistrar1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrar1MouseClicked
+    String usuario = txtProducto.getText();
+    String correo = txtPrecio.getText();
+    String contraseña = txtCantidad.getText();
 
-    private void btnRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrar1ActionPerformed
+    
+    if (usuario.isEmpty() || correo.isEmpty() || contraseña.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Complete todos los campos.");
+        return;
+    }
+
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        Connection conexion = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/amelia_fashion", "root", "");
+        Statement comando = conexion.createStatement();
+        
+        
+        comando.executeUpdate("INSERT INTO productos(nombre,precio,cantidad) VALUES ('" +
+                usuario +
+                "','" + correo +
+                "','" + contraseña +
+                "')");
+        
+        conexion.close();
+        
+        
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Producto registrado correctamente.");
+        
+       
+        txtProducto.setText("");
+        txtPrecio.setText("");
+        txtCantidad.setText("");
+            Admin AD = new Admin();
+            AD.setVisible(true);
+            this.dispose(); 
+        
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Error: Driver no encontrado - " + ex.getMessage());
+    } catch (SQLException ex) {
+        Logger.getLogger(Registrarte.class.getName()).log(Level.SEVERE, null, ex);
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Error de base de datos: " + ex.getMessage());
+    }
+    }//GEN-LAST:event_btnRegistrar1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -190,8 +229,8 @@ public class PAgregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtPassword;
-    private javax.swing.JTextField txtUsuario;
+    private javax.swing.JTextField txtCantidad;
+    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtProducto;
     // End of variables declaration//GEN-END:variables
 }
