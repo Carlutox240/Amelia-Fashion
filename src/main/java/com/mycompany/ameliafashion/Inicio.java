@@ -27,7 +27,9 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Amelia's Fashion");
 
+        Iniciar.setBackground(new java.awt.Color(255, 255, 102));
         Iniciar.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
+        Iniciar.setForeground(new java.awt.Color(153, 153, 0));
         Iniciar.setText("Iniciar sesion");
         Iniciar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -36,7 +38,9 @@ public class Inicio extends javax.swing.JFrame {
         });
         Iniciar.addActionListener(this::IniciarActionPerformed);
 
+        Registro.setBackground(new java.awt.Color(102, 255, 102));
         Registro.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
+        Registro.setForeground(new java.awt.Color(0, 153, 0));
         Registro.setText("Registrate");
         Registro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -44,7 +48,9 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        Admin.setBackground(new java.awt.Color(255, 102, 102));
         Admin.setFont(new java.awt.Font("Monotype Corsiva", 1, 24)); // NOI18N
+        Admin.setForeground(new java.awt.Color(153, 0, 0));
         Admin.setText("Administrador");
         Admin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -73,11 +79,11 @@ public class Inicio extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(Iniciar)
-                .addGap(18, 18, 18)
-                .addComponent(Admin)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Registro)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Admin)
+                .addContainerGap(149, Short.MAX_VALUE))
         );
 
         pack();

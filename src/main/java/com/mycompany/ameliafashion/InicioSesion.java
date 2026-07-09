@@ -59,9 +59,9 @@ public class InicioSesion extends javax.swing.JFrame {
             }
         });
 
-        btnIngresar.setBackground(new java.awt.Color(0, 153, 0));
+        btnIngresar.setBackground(new java.awt.Color(255, 255, 102));
         btnIngresar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresar.setForeground(new java.awt.Color(153, 153, 0));
         btnIngresar.setText("Ingresar");
         btnIngresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -70,7 +70,7 @@ public class InicioSesion extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Pristina", 1, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 153, 0));
+        jLabel4.setForeground(new java.awt.Color(153, 153, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Iniciar Sesión");
 

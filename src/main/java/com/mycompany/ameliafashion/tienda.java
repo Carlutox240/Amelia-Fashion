@@ -177,6 +177,8 @@ public class tienda extends javax.swing.JFrame {
 
         labelUsuario.setText(".");
 
+        Salir.setBackground(new java.awt.Color(204, 204, 204));
+        Salir.setFont(new java.awt.Font("Poor Richard", 1, 14)); // NOI18N
         Salir.setText("Cerrar Sesión");
         Salir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -210,6 +212,9 @@ public class tienda extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 153, 0));
         jLabel3.setText("Total:");
 
+        jeliminar.setBackground(new java.awt.Color(255, 102, 102));
+        jeliminar.setFont(new java.awt.Font("Poor Richard", 1, 14)); // NOI18N
+        jeliminar.setForeground(new java.awt.Color(153, 0, 0));
         jeliminar.setText("eliminar");
         jeliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -217,6 +222,9 @@ public class tienda extends javax.swing.JFrame {
             }
         });
 
+        btnpagar.setBackground(new java.awt.Color(102, 255, 102));
+        btnpagar.setFont(new java.awt.Font("Poor Richard", 1, 14)); // NOI18N
+        btnpagar.setForeground(new java.awt.Color(51, 153, 0));
         btnpagar.setText("pagar");
         btnpagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

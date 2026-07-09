@@ -48,6 +48,7 @@ public class PAgregar extends javax.swing.JFrame {
 
         txtUsuario.addActionListener(this::txtUsuarioActionPerformed);
 
+        btnRegistrar.setBackground(new java.awt.Color(204, 204, 204));
         btnRegistrar.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
         btnRegistrar.setText("Exit");
         btnRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
