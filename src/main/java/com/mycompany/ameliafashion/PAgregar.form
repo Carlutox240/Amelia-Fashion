@@ -26,9 +26,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtPassword" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
-                  <Component id="txtCorreo" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
-                  <Component id="txtUsuario" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
+                  <Component id="txtCantidad" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
+                  <Component id="txtPrecio" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
+                  <Component id="txtProducto" alignment="0" min="-2" pref="264" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" pref="169" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="0" min="-2" pref="67" max="-2" attributes="0"/>
@@ -55,15 +55,15 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" pref="26" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtUsuario" min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="txtProducto" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jLabel6" min="-2" pref="26" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtCorreo" min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="txtPrecio" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabel7" min="-2" pref="26" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="txtPassword" min="-2" pref="33" max="-2" attributes="0"/>
+              <Component id="txtCantidad" min="-2" pref="33" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnRegistrar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -75,9 +75,9 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JTextField" name="txtUsuario">
+    <Component class="javax.swing.JTextField" name="txtProducto">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUsuarioActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtProductoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnRegistrar">
@@ -92,7 +92,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnRegistrarMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -131,12 +130,12 @@
         <Property name="text" type="java.lang.String" value="Nombre Producto"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCorreo">
+    <Component class="javax.swing.JTextField" name="txtPrecio">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCorreoActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPrecioActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPassword">
+    <Component class="javax.swing.JTextField" name="txtCantidad">
     </Component>
     <Component class="javax.swing.JButton" name="btnRegistrar1">
       <Properties>
@@ -153,7 +152,6 @@
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnRegistrar1MouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrar1ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -4,6 +4,18 @@
  */
 package com.mycompany.ameliafashion;
 
+import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author criss
@@ -11,14 +23,64 @@ package com.mycompany.ameliafashion;
 public class Admin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Admin.class.getName());
-
+    private static final String BD_URL = "jdbc:mysql://localhost:3306/amelia_fashion";
+    private static final String BD_USUARIO = "root";
+    private static final String BD_PASSWORD = "";
     /**
      * Creates new form Admin
      */
     public Admin() {
         initComponents();
     }
+    private Connection conectarBD() throws Exception {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return DriverManager.getConnection(BD_URL, BD_USUARIO, BD_PASSWORD);
+    }
+    
+private void cargarProductos() {
+        jPanelProductos.removeAll();
+        String sql = "SELECT nombre, precio, cantidad FROM productos";
 
+        try (Connection con = conectarBD();
+             Statement st = con.createStatement();
+             ResultSet rs = st.executeQuery(sql)) {
+
+            while (rs.next()) {
+                jPanelProductos.add(crearTarjeta(
+                        rs.getString("nombre"), rs.getDouble("precio"), rs.getInt("cantidad")));
+            }
+        } catch (Exception ex) {
+            logger.log(java.util.logging.Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "No se pudieron cargar los productos.");
+        }
+
+        jPanelProductos.revalidate();
+        jPanelProductos.repaint();
+    }
+
+    /** Crea la tarjeta de un producto. */
+    private JPanel crearTarjeta(String nombre, double precio, int stock) {
+        JPanel tarjeta = new JPanel();
+        tarjeta.setLayout(new BoxLayout(tarjeta, BoxLayout.Y_AXIS));
+        tarjeta.setBackground(Color.WHITE);
+        tarjeta.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(225, 225, 225), 1, true),
+                BorderFactory.createEmptyBorder(12, 12, 12, 12)));
+
+        tarjeta.add(etiqueta(nombre, 14, Color.BLACK, true));
+        tarjeta.add(etiqueta(stock > 0 ? "Disponibles: " + stock : "Sin stock",
+                11, stock > 0 ? Color.GRAY : Color.RED, false));
+        tarjeta.add(etiqueta(String.format("$%.2f", precio), 15, new Color(0, 153, 0), true));
+
+        return tarjeta;
+    }
+    private JLabel etiqueta(String texto, int tamanio, Color color, boolean negrita) {
+        JLabel label = new JLabel(texto);
+        label.setFont(new java.awt.Font("SansSerif", negrita ? java.awt.Font.BOLD : java.awt.Font.PLAIN, tamanio));
+        label.setForeground(color);
+        label.setAlignmentX(java.awt.Component.CENTER_ALIGNMENT);
+        return label;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,7 +125,7 @@ public class Admin extends javax.swing.JFrame {
 
         labelUsuario.setText(".");
 
-        jPanelProductos.setLayout(new java.awt.GridLayout());
+        jPanelProductos.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,6 +150,11 @@ public class Admin extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Pristina", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 153, 0));
         jButton1.setText("Agregar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 255, 102));
         jButton4.setFont(new java.awt.Font("Pristina", 1, 24)); // NOI18N
@@ -185,6 +252,13 @@ public class Admin extends javax.swing.JFrame {
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:zzz
+        PAgregar PA=new PAgregar();
+        PA.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
