@@ -1,18 +1,18 @@
 package com.mycompany.ameliafashion;
-import java.awt.Color;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
+import java.awt.Color;                     // Para dar color a fondos, textos y bordes de los componentes
+import java.sql.Connection;                // Representa la conexión activa con la base de datos MySQL
+import java.sql.DriverManager;             // Se encarga de crear la conexión usando la URL, usuario y contraseña
+import java.sql.PreparedStatement;         // Ejecuta consultas SQL con parámetros (?) de forma segura, evita inyección SQL
+import java.sql.ResultSet;                 // Guarda el resultado de una consulta SELECT (las filas que regresa la BD)
+import java.sql.Statement;                 // Ejecuta consultas SQL simples, sin parámetros
+import javax.swing.BorderFactory;          // Crea los bordes de las tarjetas de producto (líneas, márgenes internos)
+import javax.swing.BoxLayout;              // Acomoda los elementos de la tarjeta uno debajo del otro
+import javax.swing.ImageIcon;              // Carga y muestra imágenes (como el logo de la tienda)
+import javax.swing.JButton;                // Botones, como "Agregar al carrito", "eliminar" y "pagar"
+import javax.swing.JLabel;                 // Textos que se muestran en pantalla (nombre, precio, stock)
+import javax.swing.JOptionPane;            // Ventanas emergentes de aviso o confirmación (ej. confirmar el pago)
+import javax.swing.JPanel;                 // Contenedor donde se agrupan los elementos de cada tarjeta de producto
+import javax.swing.table.DefaultTableModel; // Maneja los datos de la tabla del carrito (agregar, quitar, editar filas)
 
 public class tienda extends javax.swing.JFrame {
 
